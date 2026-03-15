@@ -12,18 +12,22 @@ Full admin access, root shell, and custom dark WebUI for the FiberHome HG6145F1 
 
 The following vulnerabilities were discovered and submitted for CVE assignment:
 
-| # | Vulnerability | Type | CVSS | Status |
-|---|--------------|------|------|--------|
-| 1 | Predictable Admin Password (MAC to MD5) | Weak Credential Generation | 8.8 High | Submitted |
-| 2 | RCE via `triger_speedtest` Command Injection | Command Injection | 9.8 Critical | Submitted |
-| 3 | Hardcoded AES Key (`ABCDEFGHIJKLMNOP`) | Hardcoded Crypto Key | 7.5 High | Submitted |
-| 4 | Unsigned Firmware Upload | Improper Integrity Verification | 8.8 High | Submitted |
-| 5 | Unauthenticated Information Disclosure | Information Leak | 5.3 Medium | Submitted |
-| 6 | XOR Config File "Encryption" | Weak Cryptography | 7.5 High | Submitted |
-| 7 | Boot Process Manufacturer Backdoor | Hidden Authentication | 9.0 Critical | Submitted |
-| 8 | Cleartext Credential Transmission | Missing Encryption | 6.5 Medium | Submitted |
-| 9 | No CSRF Protection | Cross-Site Request Forgery | 6.5 Medium | Submitted |
-| 10 | All Services Run as Root | Improper Privilege Management | 7.0 High | Submitted |
+| # | GHSA ID | Vulnerability | CWE | CVSS | Status |
+|---|---------|--------------|-----|------|--------|
+| 1 | [GHSA-xmq5-547h-c54q](https://github.com/MrSmiiith/hg6145f1-full-access/security/advisories/GHSA-xmq5-547h-c54q) | Predictable Admin Password (MAC to MD5) | CWE-1391 | 8.8 High | Published |
+| 2 | [GHSA-vw92-g596-f383](https://github.com/MrSmiiith/hg6145f1-full-access/security/advisories/GHSA-vw92-g596-f383) | RCE via `triger_speedtest` Command Injection | CWE-78 | 9.8 Critical | Published |
+| 3 | [GHSA-rj22-7j3c-hwqv](https://github.com/MrSmiiith/hg6145f1-full-access/security/advisories/GHSA-rj22-7j3c-hwqv) | Hardcoded AES-128-ECB Key | CWE-321 | 7.5 High | Published |
+| 4 | [GHSA-v2v7-xg62-26vr](https://github.com/MrSmiiith/hg6145f1-full-access/security/advisories/GHSA-v2v7-xg62-26vr) | Unsigned Firmware Upload (CRC32 only) | CWE-354 | 8.8 High | Published |
+| 5 | [GHSA-wqxj-5mr6-629m](https://github.com/MrSmiiith/hg6145f1-full-access/security/advisories/GHSA-wqxj-5mr6-629m) | Unauthenticated Info Disclosure (`get_base_info`) | CWE-200 | 5.3 Medium | Published |
+| 6 | [GHSA-cg4p-rwgg-67f8](https://github.com/MrSmiiith/hg6145f1-full-access/security/advisories/GHSA-cg4p-rwgg-67f8) | XOR Config File "Encryption" (`i+9527`) | CWE-327 | 7.5 High | Published |
+| 7 | [GHSA-c65g-m6qc-5543](https://github.com/MrSmiiith/hg6145f1-full-access/security/advisories/GHSA-c65g-m6qc-5543) | Boot Process Manufacturer Backdoor (UART) | CWE-912 | 9.0 Critical | Published |
+| 8 | [GHSA-qgf2-jx6w-ghrg](https://github.com/MrSmiiith/hg6145f1-full-access/security/advisories/GHSA-qgf2-jx6w-ghrg) | Cleartext HTTP Admin Interface | CWE-319 | 6.5 Medium | Published |
+| 9 | [GHSA-9p7m-ghch-x93c](https://github.com/MrSmiiith/hg6145f1-full-access/security/advisories/GHSA-9p7m-ghch-x93c) | No CSRF Protection | CWE-352 | 6.5 Medium | Published |
+| 10 | [GHSA-c4hw-qp7v-3p4c](https://github.com/MrSmiiith/hg6145f1-full-access/security/advisories/GHSA-c4hw-qp7v-3p4c) | All Services Run as Root | CWE-269 | 7.0 High | Published |
+| 11 | [GHSA-5mxp-wf2w-f7c5](https://github.com/MrSmiiith/hg6145f1-full-access/security/advisories/GHSA-5mxp-wf2w-f7c5) | Default Root Password (`root123`) + SSH on 0.0.0.0 | CWE-798 | 9.8 Critical | Published |
+| 12 | [GHSA-jvx7-f359-f63g](https://github.com/MrSmiiith/hg6145f1-full-access/security/advisories/GHSA-jvx7-f359-f63g) | Hardcoded Backdoor Credentials (`fiberhomehg2x0:hg2x0`) | CWE-798 | 9.8 Critical | Published |
+| 13 | [GHSA-gggh-vjpc-wcxj](https://github.com/MrSmiiith/hg6145f1-full-access/security/advisories/GHSA-gggh-vjpc-wcxj) | Password Change Without Old Password Verification | CWE-620 | 8.1 High | Published |
+| 14 | [GHSA-f4fw-28mm-xvq4](https://github.com/MrSmiiith/hg6145f1-full-access/security/advisories/GHSA-f4fw-28mm-xvq4) | Superadmin Username Disclosure | CWE-200 | 5.3 Medium | Published |
 
 ---
 
@@ -206,6 +210,68 @@ Every service runs as uid=0 with no privilege separation:
 - No SELinux, AppArmor, seccomp, or capabilities
 
 Any vulnerability in any service immediately grants full root access to the entire system.
+
+### CVE-11: Default Root Password with SSH Exposed on All Interfaces
+
+The firmware ships with a default root password `root123` baked into the read-only rootfs:
+
+```
+root:$1$ydAwaEgU$ctlzLX4LFq874ZDkSM75W/:0:0:root:/:bin/sh
+```
+
+The ISP-installed Dropbear SSH server runs on **port 22** bound to **0.0.0.0** (all interfaces including WAN) with persistent host keys stored in `/fhconf/dropbear/`. This means anyone with network access can SSH as root with `root123`. The password is identical across all devices with this firmware — cracked from the MD5-crypt hash in under 1 second using a common wordlist.
+
+```bash
+ssh -p 22 root@ROUTER_IP
+# Password: root123
+```
+
+### CVE-12: Hardcoded Backdoor Credentials in CGI Binary
+
+The CGI binary `/www/cgi-bin/ajax` contains hardcoded manufacturer backdoor credentials in the `do_jumplogin` function (discovered via IDA Pro reverse engineering):
+
+```c
+// In do_jumplogin() at 0x4ea20:
+if (!strcmp(s1, "fiberhomehg2x0") && !strcmp(v20, "CUAdmin")) {
+    if (!strcmp(v29, "hg2x0"))
+        v4 = 4;  // superadmin access (level 4)
+}
+```
+
+- **Username:** `fiberhomehg2x0`
+- **Password:** `hg2x0`
+- **Access Level:** 4 (superadmin — higher than admin level 2)
+
+This code path is active when the operator is set to `CU` (China Unicom), but the credentials exist in **ALL firmware images** regardless of deployed ISP. The operator can be changed by modifying `/fhconf/sysinfo_conf` (writable persistent storage), activating the backdoor on any deployment.
+
+### CVE-13: Password Change Without Old Password Verification
+
+The CGI binary contains an API method `modify_password_not_check_oldpassword` that allows changing the admin or user password **without providing the current password**:
+
+```
+POST /cgi-bin/ajax
+ajaxmethod=modify_password_not_check_oldpassword&login_user=1&new_password=NEWPASS
+```
+
+The function (at address `0x3609c` in the CGI binary) directly writes to `WebSuperPassword` or `WebPassword` XML values based on `login_user` parameter without any old password verification. An attacker with any authenticated session can escalate to admin by changing the admin password.
+
+Additionally, **638 undocumented API methods** were discovered in the CGI binary, including:
+- `do_cmd` — execute system commands
+- `do_jumplogin` — alternative login (contains backdoor)
+- `get_aes` — retrieve AES encryption parameters
+- `modify_password_superadmin` — change superadmin password
+- `get_superadmin_userName` — leak superadmin username
+- `set_web_admin_config` — modify admin configuration
+
+### CVE-14: ISP Superadmin Username Disclosure
+
+The API method `get_superadmin_userName` returns the ISP's superadmin username from the device XML configuration (`WebAccountInfo.1.Username`). This endpoint is accessible to any authenticated user (including regular user level 1, not just admin).
+
+Combined with CVE-13 (password change without verification), an attacker can:
+1. Login as regular user
+2. Call `get_superadmin_userName` to get the ISP admin username
+3. Call `modify_password_not_check_oldpassword` to change the superadmin password
+4. Login as superadmin with full ISP-level privileges
 
 ---
 
