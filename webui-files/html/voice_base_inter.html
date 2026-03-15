@@ -1,0 +1,587 @@
+<!DOCTYPE html
+	PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+
+<head>
+	<meta http-equiv='Content-Type' content='text/html; charset=utf-8' />
+	<meta HTTP-EQUIV='Pragma' CONTENT='no-cache'>
+	<script language="javascript " type="text/javascript">
+		document.write('<script  src="../js/util.js?' + new Date().getTime() + '"><' + '/' + 'script>');
+			document.write('<script  src="../js/aes.js?' + new Date().getTime() + '"><' + '/' + 'script>');
+		document.write('<script  src="../js/voice_base_inter.js?' + new Date().getTime() + '"><' + '/' + 'script>');
+	</script>
+</head>
+<script type="text/javascript">
+	setDomain("voip");
+</script>
+<style type="text/css">
+	/* 公共样式 */
+	* {
+		list-style: none;
+	}
+
+	.hide {
+		display: none;
+	}
+
+	input {
+		outline: none;
+	}
+
+	/* 模拟下拉框 */
+	.select {
+		position: relative;
+	}
+
+	.select .serverAddr {
+		position: absolute;
+		top: 20px;
+		left: 0;
+	}
+
+	.select .serverAddr ul {
+		width: 198px;
+		border: 1px solid #d6d6d6;
+		border-top: none;
+		background-color: #fff;
+	}
+
+	.select .serverAddr ul li {
+		padding-left: 10px;
+		width: 188px;
+		height: 20px;
+		line-height: 20px;
+		cursor: pointer;
+	}
+
+	.main_item_error_hint {
+		color: red;
+		clear: both;
+	}
+
+	.main_item_name {
+		width: 200px;
+	}
+
+	.main_item_content {
+		width: calc(100% - 203px);
+	}
+
+	.content1 {
+		width: 243px;
+	}
+
+	.content2 {
+		width: calc(100% - 485px);
+	}
+
+	.input_text {
+		width: 169px;
+	}
+
+	.input_text2 {
+		width: 100px;
+	}
+</style>
+
+<body class='main_config_body'>
+	<div class="main_header">
+		<p class="main_header_hint">
+			<font i18n="voipbasic_prompt">voipbasic_prompt</font>
+		</p>
+	</div>
+	<fh-fo-rm id="voice_base_form" method="post">
+		<br>
+		<div class="table_bg">
+			<div class="table_title">
+				<font i18n="basic_title">basic_title</font>
+			</div>
+			<div width="100%" cellspacing="1" cellpadding="0" border="0" class="sip_div main_content"
+				style="display:none">
+				<div>
+					<div class="main_item_name">
+						<font i18n="protocol_title" id="protocol_font">protocol_title</font>
+						<font i18n="server_title" id="server_font" style="display:none">server_title</font>
+					</div>
+					<div class="main_item_content">
+						<span class="ServerType"></span>
+					</div>
+				</div>
+				<div class="line_div_1 main_item" style="display:none">
+					<div class="main_item_name">
+						<font i18n="username_title">username_title</font>
+					</div>
+					<div class="main_item_content">
+						<input type="text" class="input_text" autocomplete="off" maxlength="64" id="AuthUserName_text_1"
+							name="AuthUserName_text_1" />
+						<span class="redcolorfont">*</span>
+						<font i18n="usernamelong_tip" style="color: gray">usernamelong_tip</font>
+					</div>
+				</div>
+				<div class="line_div_1 main_item" style="display:none">
+					<div class="main_item_name">
+						<font i18n="password_title">password_title</font>
+					</div>
+					<div class="main_item_content">
+						<input type="text" class="input_text fh-text-security" maxlength="64" autocomplete="off"
+							oncopy="return false" oncut="return false" readonly
+							onfocus="removeAttribute('readonly');clearInputValue(this.id)" id="AuthPassword_password_1"
+							name="AuthPassword_password_1" onblur="resetInputValue(this.id)" />
+						<input id="show_password_1" type="checkbox" style="height: 12px; display: none;"
+							class="input_button" i18n="change_eye" i18n-set="value" onclick="change_eye(1)" />
+						<span class="redcolorfont">*</span>
+						<font i18n="passwordlong_tip" style="color: gray">passwordlong_tip</font>
+					</div>
+				</div>
+				<div class="line_div_1 main_item" style="display:none">
+					<div class="main_item_name">
+						<font i18n="phoneno_title">phoneno_title</font>
+					</div>
+					<div class="main_item_content">
+						<input type="text" class="input_text" autocomplete="off" id="DirectoryNumber_text_1"
+							name="DirectoryNumber_text_1" />
+					</div>
+				</div>
+				<div class="line_div_1 main_item" style="display:none" id="uri_div_1">
+					<div class="main_item_name">
+						<font i18n="uri_title">uri_title</font>
+					</div>
+					<div class="main_item_content">
+						<input type="text" class="input_text" autocomplete="off" id="URI_text_1" name="URI_text_1" />
+					</div>
+				</div>
+				<div class="line_div_2 main_item" style="display:none">
+					<div class="main_item_name">
+						<font i18n="username2_title">username2_title</font>
+					</div>
+					<div class="main_item_content">
+						<input type="text" class="input_text" maxlength="64" autocomplete="off"
+							id="AuthUserName_text_2" />
+						<font i18n="usernamelong_tip" style="color: gray">usernamelong_tip</font>
+					</div>
+				</div>
+				<div class="line_div_2 main_item" style="display:none">
+					<div class="main_item_name">
+						<font i18n="password2_title">password2_title</font>
+					</div>
+					<div class="main_item_content">
+						<input type="text" class="input_text fh-text-security" maxlength="64" autocomplete="off"
+							oncopy="return false" oncut="return false" readonly
+							onfocus="removeAttribute('readonly');clearInputValue(this.id)" id="AuthPassword_password_2"
+							onblur="resetInputValue(this.id)" />
+						<input id="show_password_2" type="checkbox" style="height: 12px; display: none;"
+							class="input_button" i18n="change_eye" i18n-set="value" onclick="change_eye(2)" />
+						<font i18n="passwordlong_tip" style="color: gray">passwordlong_tip</font>
+					</div>
+				</div>
+				<div class="line_div_2 main_item" style="display:none">
+					<div class="main_item_name">
+						<font i18n="phoneno2_title">phoneno2_title</font>
+					</div>
+					<div class="main_item_content">
+						<input type="text" class="input_text" autocomplete="off" id="DirectoryNumber_text_2" />
+					</div>
+				</div>
+				<div class="line_div_2 main_item" style="display:none" id="uri_div_2">
+					<div class="main_item_name">
+						<font i18n="uri2_title">uri_title</font>
+					</div>
+					<div class="main_item_content">
+						<input type="text" class="input_text" autocomplete="off" id="URI_text_2" name="URI_text_2" />
+					</div>
+				</div>
+				<div class="line_div_3 main_item" style="display:none">
+					<div class="main_item_name">
+						<font i18n="username3_title">username3_title</font>
+					</div>
+					<div class="main_item_content">
+						<input type="text" class="input_text" maxlength="64" autocomplete="off"
+							id="AuthUserName_text_3" />
+						<font i18n="usernamelong_tip" style="color: gray">usernamelong_tip</font>
+					</div>
+				</div>
+				<div class="line_div_3 main_item" style="display:none">
+					<div class="main_item_name">
+						<font i18n="password3_title">password3_title</font>
+					</div>
+					<div class="main_item_content">
+						<input type="text" class="input_text fh-text-security" maxlength="64" autocomplete="off"
+							oncopy="return false" oncut="return false" readonly
+							onfocus="removeAttribute('readonly');clearInputValue(this.id)" id="AuthPassword_password_3"
+							onblur="resetInputValue(this.id)" />
+						<font i18n="passwordlong_tip" style="color: gray">passwordlong_tip</font>
+					</div>
+				</div>
+				<div class="line_div_3 main_item" style="display:none">
+					<div class="main_item_name">
+						<font i18n="phoneno3_title">phoneno3_title</font>
+					</div>
+					<div class="main_item_content">
+						<input type="text" class="input_text" autocomplete="off" id="DirectoryNumber_text_3" />
+					</div>
+				</div>
+				<div class="line_div_3 main_item" style="display:none" id="uri_div_3">
+					<div class="main_item_name">
+						<font i18n="uri3_title">uri_title</font>
+					</div>
+					<div class="main_item_content">
+						<input type="text" class="input_text" autocomplete="off" id="URI_text_3" name="URI_text_3" />
+					</div>
+				</div>
+				<div class="line_div_4 main_item" style="display:none">
+					<div class="main_item_name">
+						<font i18n="username4_title">username4_title</font>
+					</div>
+					<div class="main_item_content">
+						<input type="text" class="input_text" maxlength="64" autocomplete="off"
+							id="AuthUserName_text_4" />
+						<font i18n="usernamelong_tip" style="color: gray">usernamelong_tip</font>
+					</div>
+				</div>
+				<div class="line_div_4 main_item" style="display:none">
+					<div class="main_item_name">
+						<font i18n="password4_title">password4_title</font>
+					</div>
+					<div class="main_item_content">
+						<input type="text" class="input_text fh-text-security" maxlength="64" autocomplete="off"
+							oncopy="return false" oncut="return false" readonly
+							onfocus="removeAttribute('readonly');clearInputValue(this.id)" id="AuthPassword_password_4"
+							onblur="resetInputValue(this.id)" />
+						<font i18n="passwordlong_tip" style="color: gray">passwordlong_tip</font>
+					</div>
+				</div>
+				<div class="line_div_4 main_item" style="display:none">
+					<div class="main_item_name">
+						<font i18n="phoneno4_title">phoneno4_title</font>
+					</div>
+					<div class="main_item_content">
+						<input type="text" class="input_text" autocomplete="off" id="DirectoryNumber_text_4" />
+					</div>
+				</div>
+				<div class="line_div_4 main_item" style="display:none" id="uri_div_4">
+					<div class="main_item_name">
+						<font i18n="uri4_title">uri_title</font>
+					</div>
+					<div class="main_item_content">
+						<input type="text" class="input_text" autocomplete="off" id="URI_text_4" name="URI_text_4" />
+					</div>
+				</div>
+			</div>
+			<div class="main_item" id="option120_enable_div" style="display: none;">
+				<div class="main_item_name">
+					<font i18n="option120_title">option120_title</font>
+				</div>
+				<div class="main_item_content">
+					<input type="radio" id="option120enable" name="option120enable" value="1" />
+					<font i18n="voip_enable">voip_enable</font>&nbsp;
+					<input type="radio" id="option120disableab" name="option120enable" value="0" />
+					<font i18n="voip_disable">voip_disable</font>
+				</div>
+			</div>
+			<div width="100%" cellspacing="0" cellpadding="0" border="0" class="sip_div table_bg" style="display:none">
+				<div class="main_item">
+					<div class="main_item_name">
+						<font i18n="regip1_title">主用注册服务器地址</font>
+					</div>
+					<div class="main_item_content content1">
+						<input type="text" class="input_text input_text2" autocomplete="off" id="RegistrarServer_text"
+							name="RegistrarServer_text" maxlength="64" />
+						<div class="select" id="select_server" style="display: none;">
+							<div class="input_in">
+								<input type="text" class="input_text input_text2" autocomplete="off"
+									id="RegistrarServer_pldt" name="RegistrarServer_pldt" />
+							</div>
+							<div class="serverAddr hide" id="serverAddr">
+								<ul>
+									<li>qcysbc.ftth.pldt.net</li>
+									<li>lcnsbc.ftth.pldt.net</li>
+									<li>dvosbc.ftth.pldt.net</li>
+									<li>spcsbc.ftth.pldt.net</li>
+									<li>jupc5.ftth.pldt.net</li>
+									<li>spcc5.ftth.pldt.net</li>
+									<li>dvoc5.ftth.pldt.net</li>
+								</ul>
+							</div>
+						</div>
+						<span class="redcolorfont">*</span>
+						<font i18n="address_tip" style="color: gray">address_tip</font>
+					</div>
+					<div class="main_item_name" style="width:36px">
+						<font i18n="port_title">port_title</font>
+					</div>
+					<div class="main_item_content content2">
+						<input type="text" class="input_text input_text2" autocomplete="off"
+							id="RegistrarServerPort_text" name="RegistrarServerPort_text" />
+						<span class="redcolorfont">*</span>
+						<font style="color: gray">(1025-65535)</font>
+					</div>
+				</div>
+				<div class="main_item">
+					<div class="main_item_name">
+						<font i18n="regip2_title">备用注册服务器地址</font>
+					</div>
+					<div class="main_item_content content1">
+						<input type="text" class="input_text input_text2" autocomplete="off"
+							id="StandbyRegistrarServer_text" name="StandbyRegistrarServer_text" maxlength="64" />
+						<font i18n="address_tip" style="color: gray">address_tip</font>
+					</div>
+					<div class="main_item_name" style="width:36px">
+						<font i18n="port_title">port_title</font>
+					</div>
+					<div class="main_item_content content2">
+						<input type="text" class="input_text input_text2" autocomplete="off"
+							id="StandbyRegistrarServerPort_text" name="StandbyRegistrarServerPort_text" />
+						<font style="color: gray">(1025-65535)</font>
+					</div>
+				</div>
+				<div class="main_item">
+					<div class="main_item_name">
+						<font i18n="proxip1_title">主用代理服务器地址</font>
+					</div>
+					<div class="main_item_content content1">
+						<input type="text" class="input_text input_text2" autocomplete="off" id="ProxyServer_text"
+							name="ProxyServer_text" maxlength="64" />
+						<span class="redcolorfont">*</span>
+						<font i18n="address_tip" style="color: gray">address_tip</font>
+					</div>
+					<div class="main_item_name" style="width:36px">
+						<font i18n="port_title">port_title</font>
+					</div>
+					<div class="main_item_content content2">
+						<input type="text" class="input_text input_text2" autocomplete="off" id="ProxyServerPort_text"
+							name="ProxyServerPort_text" /><span class="redcolorfont">*</span>
+						<font style="color: gray">(1025-65535)</font>
+					</div>
+				</div>
+				<div class="main_item">
+					<div class="main_item_name">
+						<font i18n="proxip2_title">备用代理服务器地址</font>
+					</div>
+					<div class="main_item_content content1">
+						<input type="text" class="input_text input_text2" autocomplete="off"
+							id="StandbyProxyServer_text" name="StandbyProxyServer_text" maxlength="64" />
+						<font i18n="address_tip" style="color: gray">address_tip</font>
+					</div>
+					<div class="main_item_name" style="width:36px">
+						<font i18n="port_title">port_title</font>
+					</div>
+					<div class="main_item_content content2"><input type="text" class="input_text input_text2"
+							autocomplete="off" id="StandbyProxyServerPort_text" name="StandbyProxyServerPort_text" />
+						<font style="color: gray">(1025-65535)</font>
+					</div>
+				</div>
+				<div class="main_item">
+					<div class="main_item_name">
+						<font i18n="outbound_ip_title">外发代理服务器地址</font>
+					</div>
+					<div class="main_item_content content1">
+						<input type="text" class="input_text input_text2" autocomplete="off" id="OutboundProxy_text"
+							name="OutboundProxy_text" maxlength="64" />
+						<font i18n="address_tip" style="color: gray">address_tip</font>
+					</div>
+					<div class="main_item_name" style="width:36px">
+						<font i18n="port_title">port_title</font>
+					</div>
+					<div class="main_item_content content2"><input type="text" class="input_text input_text2"
+							autocomplete="off" id="OutboundProxyPort_text" name="OutboundProxyPort_text" />
+						<font style="color: gray">(1025-65535)</font>
+					</div>
+				</div>
+				<div class="main_item">
+					<div class="main_item_name">
+						<font i18n="secOutbound_ip_title">备用外发代理服务器地址</font>
+					</div>
+					<div class="main_item_content content1">
+						<input type="text" class="input_text input_text2" autocomplete="off"
+							id="StandbyOutboundProxy_text" name="StandbyOutboundProxy_text" maxlength="64" />
+						<font i18n="address_tip" style="color: gray">address_tip</font>
+					</div>
+					<div class="main_item_name" style="width:36px">
+						<font i18n="port_title">port_title</font>
+					</div>
+					<div class="main_item_content content2"><input type="text" class="input_text input_text2"
+							autocomplete="off" id="StandbyOutboundProxyPort_text"
+							name="StandbyOutboundProxyPort_text" />
+						<font style="color: gray">(1025-65535)</font>
+					</div>
+				</div>
+			</div>
+			<div width="100%" cellspacing="0" cellpadding="0" border="0" class="h248_div table_bg" style="display:none">
+				<div>
+					<div class="main_item_name" style="width:200px">
+						<font i18n="protocol_title">protocol_title</font>
+					</div>
+					<div class="main_item_content" style="width:calc(100% - 203px);">
+						<span class="ServerType"></span>
+					</div>
+				</div>
+				<div>
+					<div class="main_item_name" style="width:200px">本地端口</div>
+					<div class="main_item_content" style="width:calc(100% - 203px);">
+						<input type="text" class="" autocomplete="off" id="MediaGatewayPort_text"
+							name="MediaGatewayPort_text" />
+					</div>
+				</div>
+				<div>
+					<div class="main_item_name" style="width:200px">MGC1地址</div>
+					<div class="main_item_content" style="width:calc(100% - 203px);">
+						<input type="text" class="" autocomplete="off" id="MediaGatewayControler_text"
+							name="MediaGatewayControler_text" />
+					</div>
+				</div>
+				<div>
+					<div class="main_item_name" style="width:200px">MGC1端口</div>
+					<div class="main_item_content" style="width:calc(100% - 203px);">
+						<input type="text" class="" autocomplete="off" id="MediaGatewayControlerPort_text"
+							name="MediaGatewayControlerPort_text" />
+					</div>
+				</div>
+				<div>
+					<div class="main_item_name" style="width:200px">MGC2地址</div>
+					<div class="main_item_content" style="width:calc(100% - 203px);">
+						<input type="text" class="" autocomplete="off" id="StandbyMediaGatewayControler_text"
+							name="StandbyMediaGatewayControler_text" />
+					</div>
+				</div>
+				<div>
+					<div class="main_item_name" style="width:200px">MGC2端口</div>
+					<div class="main_item_content" style="width:calc(100% - 203px);">
+						<input type="text" class="" autocomplete="off" id="StandbyMediaGatewayControlerPort_text"
+							name="StandbyMediaGatewayControlerPort_text" />
+					</div>
+				</div>
+				<div>
+					<div class="main_item_name" style="width:200px">终端标识类型</div>
+					<div class="main_item_content" style="width:calc(100% - 203px);">
+						<select id="DeviceIDType_text" class="main_select">
+							<option value='0'>IP地址</option>
+							<option value='1'>域名</option>
+							<option value='2'>设备名</option>
+						</select>
+					</div>
+				</div>
+				<div>
+					<div class="main_item_name" style="width:200px">终端标识</div>
+					<div class="main_item_content" style="width:calc(100% - 203px);">
+						<input type="text" class="" autocomplete="off" id="DeviceID_text" name="DeviceID_text" />
+					</div>
+				</div>
+				<div>
+					<div class="main_item_name" style="width:200px">H.248协议编码类型</div>
+					<div class="main_item_content" style="width:calc(100% - 203px);">
+						<select id="MessageEncodingType_text" class="main_select">
+							<option value='ABNF'>ABNF</option>
+							<option value='ASN.1'>ASN.1</option>
+						</select>
+					</div>
+				</div>
+				<div>
+					<div class="main_item_name" style="width:200px">物理终结点配置方法</div>
+					<div class="main_item_content" style="width:calc(100% - 203px);">
+						<select id="servicevoip_H248ConfigMethod" class="main_select">
+							<option value='0'>通配</option>
+							<option value='1'>逐个配置</option>
+						</select>
+					</div>
+				</div>
+				<div class="physicalterm_div" style="display:none">
+					<div class="main_item_name" style="width:200px">终端物理终结点标识前缀</div>
+					<div class="main_item_content" style="width:calc(100% - 203px);">
+						<input type="text" class="" autocomplete="off" id="PhysicalTermIDPrefix_text"
+							name="PhysicalTermIDPrefix_text" />
+					</div>
+				</div>
+				<div class="physicalterm_div" style="display:none">
+					<div class="main_item_name" style="width:200px">终端物理终结点起始值</div>
+					<div class="main_item_content" style="width:calc(100% - 203px);">
+						<input type="text" class="" autocomplete="off" id="PhysicalTermIDStart_text"
+							name="PhysicalTermIDStart_text" />
+					</div>
+				</div>
+				<div class="physicalterm_div" style="display:none">
+					<div class="main_item_name" style="width:200px">物理终结点标识前缀后面添加位数</div>
+					<div class="main_item_content" style="width:calc(100% - 203px);">
+						<input type="text" class="" autocomplete="off" id="PhysicalTermIDAddLen_text"
+							name="PhysicalTermIDAddLen_text" />
+					</div>
+				</div>
+				<div>
+					<div class="main_item_name" style="width:200px">RTP终结点标识前缀</div>
+					<div class="main_item_content" style="width:calc(100% - 203px);">
+						<input type="text" class="" autocomplete="off" id="RTPPrefix_text" name="RTPPrefix_text" />
+					</div>
+				</div>
+				<div>
+					<div class="main_item_name" style="width:200px">RTP终结点标识名起始值</div>
+					<div class="main_item_content" style="width:calc(100% - 203px);">
+						<input type="text" class="" autocomplete="off" id="EphemeralTermIDStart_text"
+							name="EphemeralTermIDStart_text" />
+					</div>
+				</div>
+				<div>
+					<div class="main_item_name" style="width:200px">RTP终结点标识前缀后添加位数</div>
+					<div class="main_item_content" style="width:calc(100% - 203px);">
+						<input type="text" class="" autocomplete="off" id="EphemeralTermIDAddLen_text"
+							name="EphemeralTermIDAddLen_text" />
+					</div>
+				</div>
+				<!--<tr class="h248_line_1 portid_div" style="display:none">
+			            <td width="100%">
+			            	<div class="table_left_item2">线路1使能</div>
+							<div class="table_right_item">
+								<input type="checkbox" id="FXSPortEnable_checkbox_1"/>&nbsp;
+							</div>
+						</td>
+					</tr>-->
+				<div class="h248_line_1 portid_div" style="display:none">
+					<div class="main_item_name" style="width:200px">线路1线路名</div>
+					<div class="main_item_content" style="width:calc(100% - 203px);">
+						<input type="text" class="" autocomplete="off" id="PS_PortID_1" name="PS_PortID_1" />
+					</div>
+				</div>
+				<!--<tr class="h248_line_2 portid_div" style="display:none">
+			            <td width="100%">
+			            	<div class="table_left_item2">线路2使能</div>
+							<div class="table_right_item">
+								<input type="checkbox" id="FXSPortEnable_checkbox_2"/>&nbsp;
+							</div>
+						</td>
+					</tr>-->
+				<div class="h248_line_2 portid_div" style="display:none">
+					<div class="main_item_name" style="width:200px">线路2线路名</div>
+					<div class="main_item_content" style="width:calc(100% - 203px);">
+						<input type="text" class="" autocomplete="off" id="PS_PortID_2" name="PS_PortID_2" />
+					</div>
+				</div>
+			</div>
+			<div id="signaling_port_div" style="display: none;">
+				<div class="main_item_name">
+					<font i18n="signaling_port">signaling_port</font>
+				</div>
+				<div class="main_item_content">
+					<select id="signaling_port" disabled="disabled" class="main_select">
+					</select>
+				</div>
+			</div>
+			<div id="media_port_div" style="display: none;">
+				<div class="main_item_name">
+					<font i18n="media_port">media_port</font>
+				</div>
+				<div class="main_item_content">
+					<select id="media_port" disabled="disabled" class="main_select">
+					</select>
+				</div>
+			</div>
+			<div class="main_item">
+				<div class="main_submit" style="width: 25%;"></div>
+				<div class="main_submit" style="width: 75%;">
+					<input type="button" class="input_button" id="voip_apply" i18n="voip_apply" i18n-set="value"
+						onclick="saveApply()">&nbsp; &nbsp;
+					<input type="button" class="input_button" id="voip_cancel" i18n="voip_cancel" i18n-set="value"
+						onclick="window.location.reload()" />
+				</div>
+			</div>
+		</div>
+	</fh-fo-rm>
+</body>
+</html>

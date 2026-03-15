@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>HG6145F1 WebUI</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta HTTP-EQUIV='Pragma' CONTENT='no-cache'>
+    <script language="javascript" type="text/javascript">
+	 document.write('<script  src="../js/util.js?'+new Date().getTime()+'"><'+'/'+'script>');
+	 document.write('<link rel="stylesheet" id="css" type="text/css" href="../css/mainLeft.css?'+new Date().getTime()+'"><'+'/'+'link>');
+	 document.write('<script  src="../js/menuLft.js?'+new Date().getTime()+'"><'+'/'+'script>');
+	 document.write('<script  src="../js/mainLeft.js?'+new Date().getTime()+'"><'+'/'+'script>');
+    </script>
+</head>
+<body>	
+	<div class="body">
+		<div class="header">
+			<div class="logo" id="logo" style="width:200px ;float: left; background-image: url();background-repeat:no-repeat; ">
+			</div>
+			<div class="top-menu">
+				<div class="logout" style="float: right;">
+					<a id="fast_setting"  onclick="fast_setting()"  style="float: left; padding-left: 620px;display: none;"><font>Fast Setting</font></a>
+					<div id="device_name" style="float: left; font-size: 20px; display: none;" ></div>
+					<a id="logout"  onclick="realLogout()"><font i18n="quit">quit</font></a>
+				</div>
+				<div class="fir-menu">
+					<ul></ul>
+				</div>
+			</div>
+		</div>
+		<div class="conter">
+			<div class="left-meun">
+				<ul class="sec-menu"></ul>
+			</div>
+			<div class="content">
+				<div class="nav-title"></div>
+				<iframe frameborder="0" scrolling="auto" class="main_iframe" src=""></iframe>
+			</div>
+		</div>
+		<div class="footer"></div>
+	</div>
+	<div id='loading_window_div' style='display:none'>
+		<!-- <div id="loading_window_content_div">
+			loading......
+		</div> -->
+	</div>
+	<div id='pop_window_div' style='display:none'>
+		<div id="pop_window_content_div">
+			<div id="pop_window_title"></div>
+			<div id="pop_window_body">
+				<div id="pop_window_icon"></div>
+				<div id="pop_window_show_div">
+					<div id="pop_window_message"></div>
+					<div id="pop_window_option">
+						<div id="confirm" class="pop_window_action bg_color_main"><font i18n="comfirm">comfirm</font></div>
+						<div onclick="doCancel()" id="cancel" class="pop_window_action bg_color_red"><font i18n="cancle">canclel</font></div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

@@ -1,0 +1,233 @@
+{
+	"status": {
+		"childMenuPosition": "both",
+		"secondmenus":[
+			{"name": "status_overview", "title":"Device_Information", 
+				"thirdmenus": [
+					{"name":"status_overview_ip", "title":"Device_Information", "src": "stateOverview_inter.html"}
+				]
+			},
+			{"name": "status_wifi", "title":"wireless_state", 
+				"thirdmenus": [
+					{"name":"status_wifi_info", "title":"wireless_state", "src": "wifi_info_inter.html"},
+					{"name":"status_wifi_info5g", "title":"5Gwifistate", "src": "wifi_info_inter5g.html"},
+					{"name":"status_wifi_list", "title":"wifi_mac_list", "src": "wifi_list_inter.html"},
+					{"name":"status_topo_info", "title":"wifi_topo_list", "src": "topo.html"},
+					{"name":"status_wifi_neighbor_list", "title":"status_wifi_neighbor_list", "src": "wifi_coverage_inter.html"}
+				]
+			},
+			{"name": "status_wan", "title":"wan_state", 
+				"thirdmenus": [
+					{"name":"status_wan_ip", "title":"wan_state", "src": "ipconInfo_inter.html"}
+				]
+			},
+			{"name": "status_lan", "title":"lan_state", 
+				"thirdmenus": [
+					{"name":"status_lan_lan", "title":"lan_state", "src": "statslan_inter.html"},
+					{"name":"ethernetPorts", "title":"ethernetPorts", "src": "ethernetPorts.html"},
+					{"name":"status_dhcp_userlist", "title":"dhcp_userlist", "src": "dhcp_user_list_inter.html"},
+					{"name":"status_dhcpv6_info", "title":"dhcpv6_info", "src": "dhcpv6_info_inter.html"}
+				]
+			},
+			{"name": "status_pon", "title":"Optical_Power", 
+				"thirdmenus": [
+					{"name":"status_pon_link", "title":"Optical_Power", "src": "pon_link_info_inter.html"}
+				]
+			},
+			{"name": "status_voice", "title":"VOIP_State", 
+				"thirdmenus": [
+					{"name":"status_voice_info", "title":"VOIP_State", "src": "voice_info_inter.html"}
+				]
+			},
+			{"name": "status_usb", "title":"USB_State",
+				"thirdmenus": [
+					{"name":"status_usb_info", "title":"USB_State", "src": "usb_info_inter.html"}
+				]
+			}
+		]
+	},
+	"network": {
+		"childMenuPosition": "both",
+		"secondmenus":[
+			{"name": "network_wifi", "title":"wlan_settings",
+				"thirdmenus": [
+					{"name":"network_wifi_multiAp", "title":"Multi-AP", "src": "multi_ap_enable.html"},
+					{"name":"network_wifi_band_steering", "title":"BandSteering", "src": "band_steering.html"},
+					{"name":"network_wifi_base", "title":"basic", "src": "wlanBasicSettings_inter.html"},
+					{"name":"network_wifi_advance", "title":"security", "src": "wlanAdvancedSettings_inter.html"},
+					{"name":"network_wifi_control", "title":"wifiPowercontrol", "src": "wlanControl_inter.html"},
+					{"name":"network_wifi_base5G", "title":"5Gbasic", "src": "wlanBasicSettings_5G_inter.html"},
+					{"name":"network_wifi_advance5G", "title":"5Gsecurity", "src": "wlanAdvancedSettings_5G_inter.html"},
+					{"name":"network_wifi_control5G", "title":"5GwifiPowercontrol", "src": "wlanControl_5G_inter.html"},
+					{"name":"network_wifi_wps", "title":"WPS", "src": "wlanwps_inter.html"}
+				]
+			},
+			{"name": "network_lan", "title":"lan_settings",
+				"thirdmenus": [
+					{"name":"network_lan_v4", "title":"lan_settings", "src": "lan_ipv4_inter.html"},
+					{"name":"network_dhcp_lan", "title":"dhcp_lan_settings", "src": "dhcp_lan_inter.html"}
+				]
+			},
+			{"name": "network_wan", "title":"broadband",
+				"thirdmenus": [
+					{"name":"network_wan_broadbund", "title":"internet", "src": "broadband_inter.html"},
+					{"name":"iptv", "title":"iptv", "src": "iptv_inter.html"}
+				]
+			},
+			{"name": "remote_management", "title":"Remote management",
+				"thirdmenus": [
+					{"name":"ITMS_Server", "title":"ITMS_Server", "src": "acs_config.html"}
+				]
+			},
+			{"name": "network_olt_auth", "title":"auth_settings",
+				"thirdmenus": [
+					{"name":"network_olt_auth", "title":"olt_auth", "src": "snpwdauth_inter.html"}
+				]
+			},
+			{"name": "network_qos", "title":"qos_settings",
+				"thirdmenus": [
+					{"name":"network_qos_base", "title":"qos_base", "src": "qos_base_inter.html"},
+                    {"name":"network_qoslimit", "title":"qoslimit_settings", "src": "qoslimit_inter.html"},
+					{"name":"network_qos_queue", "title":"qos_queue", "src": "qos_queue_inter.html"},
+					{"name":"network_qos_app", "title":"qos_app", "src": "qos_app_inter.html"},
+					{"name":"network_qos_class", "title":"qos_class", "src": "qos_class_inter.html"}
+				]
+			},
+			{"name": "network_voice", "title":"voip_settings",
+				"thirdmenus": [
+					{"name":"network_voice_enable", "title":"voip_enable", "src": "voice_enable_inter.html"},
+					{"name":"network_voice_basic", "title":"network_voice_basic", "src": "voice_base_inter.html"},
+					{"name":"network_voice_advance", "title":"advance", "src": "voice_advance_inter.html"},
+					{"name":"network_voice_timeout", "title":"dial_timeout", "src": "voice_timer_inter.html"},
+					{"name":"network_voice_codec", "title":"code", "src": "voice_codec_inter.html"}
+				]
+			},
+			{"name":"network_route", "title":"route_settings",
+				"thirdmenus":[
+					{"name":"network_ipv4_default_route", "title":"ipv4_default_route", "src":"ipv4_default_route.html"},
+					{"name":"network_ipv4_static_route", "title":"ipv4_static_route", "src":"ipv4_static_route.html"}
+				]
+			}
+		]	
+	},	
+	"security": {
+		"childMenuPosition": "both",
+		"secondmenus":[
+			{"name": "security_wan", "title":"firewall",
+				"thirdmenus": [
+					{"name":"security_firewall_firewall", "title":"fw_enable", "src": "firewall_enable_inter.html"},
+					{"name":"security_ip_filter", "title":"ip_filter", "src": "main_ipfilterv4_inter.html"},
+					{"name":"security_ipv6_filter", "title":"ipv6_filter", "src": "main_ipfilterv6_inter.html"},
+					{"name":"security_dhcp_filter", "title":"DHCP_filter", "src": "dhcp_filter_inter.html"},
+					{"name":"security_wan_wan", "title":"urlfilter", "src": "url_filter_inter.html"},
+					{"name":"security_filter_eth", "title":"Port_Scan", "src": "port_scan_inter.html"},
+					{"name":"security_mac_mac", "title":"macaddr_filter", "src": "mac_filter_inter.html"},
+					{"name":"security_parental_control", "title":"security_parental_control", "src": "parental_control_inter.html"},
+					{"name":"security_acl_setting", "title":"security_acl_setting", "src": "acl_setting.html"},
+					{"name":"security_ipv6_acl_setting", "title":"security_ipv6_acl_setting", "src": "ipv6_acl_setting.html"}
+				]
+			},
+			
+			{"name": "DDOS", "title":"DDOS",
+				"thirdmenus": [
+					{"name":"ddos", "title":"DDOS", "src": "ddos_enable_inter.html"}
+				]
+			},
+			{"name": "security_HTTPS", "title":"HTTPS",
+				"thirdmenus": [
+					{"name":"security_security_HTTPS", "title":"HTTPS", "src": "HTTPS_inter.html"}
+				]
+			}			
+		]
+	},
+	"app": {
+		"childMenuPosition": "both",
+		"secondmenus":[
+                        {"name": "app_dlna", "title":"DLNA",
+				"thirdmenus": [
+					{"name":"app_dlna_enable", "title":"DLNA", "src": "dlna_enable.html"}
+				]
+			},
+			{"name": "app_samba", "title":"Samba",
+				"thirdmenus": [
+					{"name":"app_samba_service", "title":"Samba", "src": "samba.html"}
+				]
+			},
+			{"name": "app_vpn", "title":"VPN",
+				"thirdmenus": [
+					{"name":"app_vpn_vpn_through", "title":"vpn_through", "src": "vpn_through_inter.html"}
+				]
+			},
+			{"name": "app_ddns", "title":"DDNS",
+				"thirdmenus": [
+					{"name":"app_ddns_ddns", "title":"DDNS_Settings", "src": "ddns_new_inter.html"}
+				]
+			},
+			{"name": "app_port_mapping", "title":"Port_Mapping",
+				"thirdmenus": [
+					{"name":"app_portmapping_portmapping", "title":"Port_Mapping", "src": "portmapping_inter.html"}
+				]
+			},
+			{"name": "app_nat", "title":"NAT",
+				"thirdmenus": [
+					{"name":"app_nat_alg", "title":"NAT", "src": "nat.html"}
+				]
+			},
+			{"name": "app_alg", "title":"ALG",
+				"thirdmenus": [
+					{"name":"app_nat_alg", "title":"ALG", "src": "alg_inter.html"}
+				]
+			},
+			{"name": "app_upnp", "title":"UPNP",
+				"thirdmenus": [
+					{"name":"app_upnp_upnp", "title":"UPNP", "src": "upnp.html"}
+				]
+			},
+			{"name": "app_dmz", "title":"DMZ",
+				"thirdmenus": [
+					{"name":"app_nat_dmz", "title":"DMZ", "src": "dmz_inter.html"}
+				]
+			},
+			{"name": "app_web_port", "title":"Web Port",
+				"thirdmenus": [
+					{"name":"app_web_port", "title":"Web Port", "src": "web_port.html"}
+				]
+			},
+			{"name": "app_Diagnosis", "title":"Diagnosis",
+				"thirdmenus": [
+					{"name":"app_Diagnosis_ping", "title":"ping", "src": "ping_inter.html"},
+					{"name":"app_Diagnosis_tracert", "title":"tracert", "src": "traceroute_inter.html"},
+                    			{"name":"app_Diagnosis_port_mirror", "title":"Port_Mirror", "src": "port_mirror_inter.html"}
+				]
+			}
+		]
+	},
+	"manage": {
+		"childMenuPosition": "both",
+		"secondmenus":[
+			{"name": "manage_user", "title":"user_admin",
+				"thirdmenus": [
+					{"name":"manage_user_management", "title":"user_account_admin", "src": "user_management_inter.html"},
+					{"name":"manage_admin_management", "title":"admin_account_admin", "src": "admin_management_inter.html"}
+				]
+			},
+			{"name": "manage_device", "title":"device_admin",
+				"thirdmenus": [
+					{"name":"manage_device_restore", "title":"restore", "src": "restoreDefault.html"},
+					{"name":"manage_device_upgrade", "title":"update", "src": "ledstate.html"},
+					{"name":"manage_device_cfgfile", "title":"down_cfgfile", "src": "down_cfgfile.html"},
+					{"name":"manage_device_reboot", "title":"reboot", "src": "reboot.html"},
+					{"name":"manage_device_ntp", "title":"checktime", "src": "ntp_inter.html"},
+					{"name":"manage_device_catv","title":"CATV Settings", "src":"catv_inter.html"},
+					{"name":"manage_device_ftp","title":"FTP", "src":"ftp_server.html"}
+				]
+			},
+			{"name": "manage_log", "title":"log_admin",
+				"thirdmenus": [
+					{"name":"manage_log_view", "title":"log", "src": "logView.html"},
+					{"name":"manage_system_log_view", "title":"system_log", "src": "logSettings_inter.html"}
+				]
+			}
+		]
+	}
+}

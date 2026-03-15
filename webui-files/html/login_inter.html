@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv='Content-Type' content='text/html; charset=utf-8'>
+<script language="javascript" type="text/javascript">
+  document.write('<script src="../js/jquery.js?'+new Date().getTime()+'"></'+'script>');
+  document.write('<script src="../js/xhr.js?'+new Date().getTime()+'"></'+'script>');
+  document.write('<script src="../js/aes.js?'+new Date().getTime()+'"></'+'script>');
+  document.write('<script src="../js/login_inter.js?'+new Date().getTime()+'"></'+'script>');
+  document.write('<script src="../js/jquery.validate.js?'+new Date().getTime()+'"></'+'script>');
+  document.write('<script src="../language/messages_en.js?'+new Date().getTime()+'"></'+'script>');
+  document.write('<script src="../js/page_access_check.js?'+new Date().getTime()+'"></'+'script>');
+  document.write('<link rel="stylesheet" type="text/css" href="../css/style.css?'+new Date().getTime()+'">');
+  document.write('<script src="../js/i18n.js?'+new Date().getTime()+'"></'+'script>');
+</script>
+<title>welcome</title>
+<script language="javascript" type="text/javascript">
+setDomain('menu');
+loginHtmlAccessCheck(goperator_name, "login_inter.html");
+function formLoad(){}
+</script>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  background-color: #0e1525;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Segoe UI', 'Roboto', sans-serif;
+}
+.login-container {
+  background: #141c2e;
+  border: 1px solid #2a3a5a;
+  border-radius: 12px;
+  padding: 36px;
+  width: 360px;
+}
+.logo-section {
+  text-align: center;
+  margin-bottom: 28px;
+}
+.logo-title {
+  font-size: 22px;
+  font-weight: 600;
+  color: #e8ecf4;
+  margin-top: 8px;
+}
+.logo-subtitle {
+  font-size: 12px;
+  color: #8898b8;
+  margin-top: 4px;
+}
+.form-group {
+  margin-bottom: 16px;
+}
+.form-group label {
+  display: block;
+  color: #a0b0d0;
+  font-size: 13px;
+  margin-bottom: 6px;
+}
+.form-group input[type="text"],
+.form-group input[type="password"] {
+  width: 100%;
+  padding: 10px 14px;
+  background: #0e1525;
+  border: 1px solid #2a3a5a;
+  border-radius: 6px;
+  color: #e8ecf4;
+  font-size: 14px;
+  outline: none;
+}
+.form-group input:focus {
+  border-color: #0077ff;
+}
+.btn-login {
+  width: 100%;
+  padding: 11px;
+  background: #0077ff;
+  border: none;
+  border-radius: 6px;
+  color: #fff;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  margin-top: 8px;
+}
+.btn-login:hover {
+  background: #0066dd;
+}
+#login_error_hint {
+  color: #ff4466;
+  text-align: center;
+  font-size: 13px;
+  margin-top: 12px;
+  display: block;
+}
+.footer {
+  text-align: center;
+  margin-top: 20px;
+  color: #4a5580;
+  font-size: 11px;
+}
+</style>
+</head>
+<body onLoad="formLoad()">
+  <div class="login-container">
+    <div class="logo-section">
+      <div class="logo-title" id="login_title">HG6145F1</div>
+      <div class="logo-subtitle">Custom WebUI by Smothy</div>
+    </div>
+
+    <div class="form-group">
+      <label>Username</label>
+      <input name="user_name" id="user_name" maxlength="32" type="text" autocomplete="off">
+    </div>
+
+    <div class="form-group">
+      <label>Password</label>
+      <input name="loginpp" id="loginpp" maxlength="32" type="password" autocomplete="off">
+    </div>
+
+    <input type="submit" onClick="onlogin(1)" class="btn-login" id="login_btn" value="Login">
+    <span id="login_error_hint"></span>
+
+    <div class="footer">FiberHome HG6145F1 &mdash; Numb Team</div>
+  </div>
+</body>
+</html>

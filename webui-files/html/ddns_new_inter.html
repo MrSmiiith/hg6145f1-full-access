@@ -1,0 +1,156 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+	<head>
+		<meta http-equiv='Content-Type' content='text/html; charset=utf-8'/>
+		<meta HTTP-EQUIV='Pragma' CONTENT='no-cache'>
+		<script language ="javascript "type ="text/javascript">
+	        document.write('<script  src="../js/util.js?'+new Date().getTime()+'"><'+'/'+'script>');
+				document.write('<script  src="../js/aes.js?'+new Date().getTime()+'"><'+'/'+'script>');
+			document.write('<script  src="../js/ddns_new_inter.js?'+new Date().getTime()+'"><'+'/'+'script>');
+			
+		</script>
+	</head>
+	<script type="text/javascript">
+		setDomain("application");
+	</script>
+	<style type="text/css">
+	    .main_item_error_hint {color: red; clear: both;}
+	    .input_text {width: 124px;}
+	</style>
+	<body class='main_config_body'>
+		<div class="main_header">
+			<p class="main_header_hint"><font i18n="ddns_prompt">ddns_prompt</font></p>
+		</div>
+	    </br>
+		<form id="ddns_list_form" method="post">
+			<div style="float:right">
+				<input type="button" i18n="app_add" i18n-set="value" id="fw_add" class="input_button" onClick="addfilter()">
+				<input type="button" i18n="app_delete" i18n-set="value" id="fw_delete" class="input_button" onClick="click_remove()">
+	  			<input type="button" i18n="app_delete_all" i18n-set="value" id="fw_deleteAll" class="input_button" onClick="click_remove_all()">
+				<br/>
+			</div>			
+			<table width="100%" class="table_bg" cellspacing="1" cellpadding="0" border="0">
+				<tr class="table_title">
+					<td colspan="8"><font i18n="ddns_title">ddns_title</font></td>
+				</tr>
+				<tr class="table_head_title">
+					<td width="5%" align='center'><font i18n="app_id">app_id</font></td>
+					<td width="5%" align='center'><font i18n="app_enable">app_enable</font></td>
+					<td width="20%" align='center'><font i18n="app_wan">app_wan</font></td>	
+					<td width="20%" align='center'><font i18n="ddns_user_name_title">app_username</font></td>
+					<td width="30%" align='center'><font i18n="ddns_provider_title">app_provider</font></td>
+					<td width="15%" align='center'><font i18n="ddns_host_title">app_hostname</font></td>
+					<td width="5%" align='center'></td>		
+				</tr>
+				<tbody id='ddns_list' style="font-size: 12px">
+				</tbody> 
+			</table>
+			</br>
+			<div class="main_content" id = "fw_config_form" style="display: none;">
+				<div class="main_item">
+					<div class="main_item_name"><font i18n="ddns_enable_title">ddns_enable_title</font></div>
+					<div class="main_item_content">
+						<input type="radio" id="ddns_enable" name="ddns_enable" value="1"/><font i18n="app_enable">app_enable</font>&nbsp;&nbsp;
+						<input type="radio" id="ddns_disable" name="ddns_enable" value="0"/><font i18n="app_disable">app_disable</font>
+						&nbsp;&nbsp;<span class="redcolorfont">*</span>
+					</div>
+				</div>
+				<div class="main_item">
+					<div class="main_item_name"><font i18n="ddns_interface_title">ddns_interface_title</font></div>
+					<div class="main_item_content">					
+						<select id="ddns_interface" name="ddns_interface" size="1" style="width:35%"></select>
+					</div>
+				</div>
+				<div class="main_item">
+					<div class="main_item_name"><font i18n="ddns_user_name_title">ddns_user_name_title</font></div>
+					<div class="main_item_content">
+						<input name="ddns_user_name" id="ddns_user_name" class="input_text" size="15" maxlength="32" type="text" autocomplete="off" value=""><strong style="color:#FF0033">*</strong><span class="gray" id="ddns_usernameTips"  i18n="ddns_usernameTips">(1-32 Characters)</span>
+					</div>
+					<div id="min_ddns_user_name-error" class="main_item_error_hint_extra"></div>
+				</div>
+				<div class="main_item">
+					<div class="main_item_name"><font i18n="ddns_password_title">ddns_password_title</font></div>
+					<div class="main_item_content"><input name="ddns_password" class="input_text fh-text-security" id="ddns_password" size="15" maxlength="32" type="text" autocomplete="off" value="" oncopy="return false" oncut="return false" onfocus="clearInputValue(this.id)" onblur="resetInputValue(this.id)">
+						<input id="show_password" type="checkbox" style="height: 12px; display: none;" class="input_button" i18n="change_eye" i18n-set="value" onclick="change_eye()" />
+						<strong style="color:#FF0033">*</strong><span class="gray" i18n="ddns_password_tips">(1-32 Characters)</span>
+					</div>
+					<div id="min_ddns_password-error" class="main_item_error_hint_extra"></div>	
+				</div>
+				<div class="main_item">
+					<div class="main_item_name"><font i18n="ddns_host_title">ddns_host_title</font></div>
+					<div class="main_item_content">					
+						<input name="ddns_host" id="ddns_host" class="input_text" size="32" maxlength="64" type="text" autocomplete="off" value=""><strong style="color:#FF0033">*</strong><span class="gray" id="ddns_host_tips">(eg. abc.dyndns.co.za)</span>
+					</div>
+					<div id="min_ddns_host-error" class="main_item_error_hint_extra"></div>
+				</div>
+				<div class="main_item">
+					<div class="main_item_name"><font i18n="ddns_provider_title">ddns_provider_title</font></div>
+					<div class="main_item_content">					
+						<select id="ddns_provider" name="ddns_provider" size="1" style="width:35%" aria-invalid="false" class="valid">
+							<option value="www.3322.org" selected="selected">www.3322.org </option>
+							<option value="www.pubyun.com" style="display: none">www.pubyun.com</option>
+							<option value="www.dyndns.org">www.dyndns.org</option>
+							<option value="www.no-ip.com">www.no-ip.com</option>
+							<option value="Other">Other</option>
+						</select>
+					</div>
+				</div>
+				<div id="Oher_info" style="display: none;">
+						<div class="main_item">
+							<div class="main_item_name"><font i18n="ddns_domain_title">ddns_domain_title</font></div>
+							<div class="main_item_content">					
+								<input name="ddns_domain" id="ddns_domain" class="input_text" size="32" maxlength="64" type="text" autocomplete="off" value=""><strong style="color:#FF0033">*</strong><span class="gray" id="ddns_host_tips">(eg. abc.dyndns.co.za)</span>
+							</div>
+							<div id="min_ddns_host-error" class="main_item_error_hint_extra"></div>
+						</div>
+						<div class="main_item">
+							<div class="main_item_name"><font i18n="ddns_server_address_title">ddns_server_address_title</font></div>
+							<div class="main_item_content">					
+								<input name="ddns_server_address" id="ddns_server_address" class="input_text" size="32" maxlength="64" type="text" autocomplete="off" value=""><strong style="color:#FF0033">*</strong><span class="gray" id="ddns_server_address_tips">(eg. www.dyndns.co.za)</span>
+							</div>
+							<div id="min_ddns_host-error" class="main_item_error_hint_extra"></div>
+						</div>
+						<div class="main_item">
+							<div class="main_item_name"><font i18n="ddns_protocol_title">ddns_protocol_title</font></div>
+							<div class="main_item_content">					
+								<select id="ddns_protocol" name="ddns_protocol" size="1" style="width:35%" aria-invalid="false" class="valid">
+									<option value="GNUDip.http" >GNUDip.http </option>
+									<option value="GNUDip.tcp" selected="selected">GNUDip.tcp</option>
+								</select>
+							</div>
+						</div>
+						<div class="main_item" id="ddns_url_info" style="display: none;">
+							<div class="main_item_name"><font i18n="ddns_url_title">ddns_url_title</font></div>
+							<div class="main_item_content">					
+								<input name="ddns_url" id="ddns_url" class="input_text" size="32" maxlength="64" type="text" autocomplete="off" value=""><strong style="color:#FF0033">*</strong><span class="gray" id="ddns_host_tips">(eg. /cgi-bin/gdipupdt.cgi)</span>
+							</div>
+							<div id="min_ddns_host-error" class="main_item_error_hint_extra"></div>
+						</div>
+				
+				</div>
+				
+				
+				<div class="main_item">
+					<div class="main_submit" style="width: 25%;"></div>				
+					<div class="main_submit" style="width: 75%;">
+						<input type="button" id="app_apply" class="input_button" i18n="app_apply" i18n-set="value" onclick="save_apply()"/>
+						<input type="button" id="app_cancel" class="input_button" i18n="app_cancel" i18n-set="value" onclick="window.location.reload();"/>
+					</div>
+				</div>
+			</div>
+		</form>
+	</body>
+	<script type="text/javascript">
+	//if (gOperatorName != "COL_ETB") {
+	//	setInterval(function(){
+	//	    if($("#ddns_password").length > 0){
+	//			if(!$("#ddns_password").hasClass("fh-text-security")){
+	//				$("#ddns_password").addClass("fh-text-security");
+	//			}
+	//		}else{
+	//			window.location.reload();
+	//		}
+	//	}, 10);
+	//}
+	</script>
+</html>

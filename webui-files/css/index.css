@@ -1,0 +1,99 @@
+html,
+body {
+    height: 100%;
+}
+
+* {
+    font-family: 'db_helvethaicaais_x55_regular';
+}
+
+.wrapper-banner-login {
+    width: 640px;
+    background-image: url('../img/login/img_hero_image.png');
+    background-repeat: no-repeat;
+}
+
+.wrapper {
+    width: calc(100% - 640px);
+    float: left;
+}
+
+.warp-login {
+    width: 448px;
+    padding-top: 20%;
+    padding-bottom: 50px;
+    margin: 0 auto;
+}
+
+.warp-login h3 {
+    font-family: 'db_helvethaicaais_x75_bd';
+    font-size: 35px;
+    margin-bottom: 50px;
+    color: #4D4D4D;
+}
+
+.warp-login h4 {
+    font-family: 'db_helvethaicaais_x75_bd';
+    font-size: 30px;
+    margin-bottom: 50px;
+    color: #4D4D4D;
+}
+
+
+.form-login .title {
+    font-family: 'db_helvethaicaais_x65_med';
+    padding-left: 18px;
+    color: #4E4E4E;
+    opacity: 0.6;
+}
+
+.input-form-login {
+    width: 100%;
+    border-radius: 12px;
+    border-style: solid;
+    border-width: 1px;
+    border-color: rgba(149, 152, 154, 0.25);
+    height: 47px;
+    font-family: 'db_helvethaicaais_x65_med';
+    font-size: 20px;
+    color: #4E4E4E;
+}
+
+.input-form-login.username {
+    background: #F9F9F9 url('../image/ais/login/ic_person_24px.png') no-repeat 5% 50%;
+    padding-left: 12%;
+}
+
+.input-form-login.password {
+    background: #F9F9F9 url('../image/ais/login/ic_lock_24px.png') no-repeat 5% 50%;
+    padding-left: 12%;
+}
+
+.input-form-login:focus {
+    outline: none;
+}
+
+.btn-signin {
+    height: 40px;
+    background-color: #0077ff;
+    border-radius: 20px;
+    border: none;
+    color: white;
+    width: 224px;
+}
+.btn-signin-interbras {
+    height: 50px;
+    background-color: #0077ff;
+    border-radius: 20px;
+    border: none;
+    color: white;
+    width: 100%;
+}
+.btn-signin-netwey {
+    height: 50px;
+    background-color: rgb(229,62,162);
+    border-radius: 20px;
+    border: none;
+    color: white;
+    width: 400px;
+}
