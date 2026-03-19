@@ -10,7 +10,7 @@ import re
 UPPER = "ACDFGHJMNPRSTUWXY"
 LOWER = "abcdfghjkmpstuwxy"
 DIGIT = "2345679"
-SYMBOL = "!@#&%"
+SYMBOL = "!@$&%"
 
 
 def mac_to_pass(mac: str) -> str:

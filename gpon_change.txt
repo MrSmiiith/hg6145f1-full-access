@@ -1,0 +1,5 @@
+// STEP 1: Read current GPON config
+XHR.get("get_loid_phy_pwd", null, function(d){console.log("Current GPON config:", JSON.stringify(d))});
+
+// STEP 2: Read base info for GPON SN
+XHR.get("get_base_info", null, function(d){console.log("GPON SN:", d.gponsn, "Serial:", d.SerialNumber, "ONU_ID:", d.onu_id, "Auth:", d.authStatus, "Reg:", d.pon_reg_state)});

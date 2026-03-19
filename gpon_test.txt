@@ -1,0 +1,5 @@
+// STEP 1: Get current GPON SN
+XHR.get("get_base_info", null, function(d){console.log("GPON SN:", d.gponsn, "Serial:", d.SerialNumber, "ONU:", d.onu_id, "Auth:", d.authStatus)});
+
+// STEP 2: Get snpwdauth config
+XHR.get("get_snpwdauth", null, function(d){console.log("SNPWDAUTH:", JSON.stringify(d))});

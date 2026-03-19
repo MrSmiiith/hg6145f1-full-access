@@ -1,0 +1,11 @@
+// Direct GPON SN read - no page needed, just run in console
+var x=new XMLHttpRequest();x.open('GET','/cgi-bin/ajax?ajaxmethod=get_refresh_sessionid',false);x.send();var s=JSON.parse(x.responseText).sessionid;
+
+// Get base info
+var x2=new XMLHttpRequest();x2.open('GET','/cgi-bin/ajax?ajaxmethod=get_base_info',false);x2.send();console.log('BASE INFO:', x2.responseText);
+
+// Get GPON config
+var x3=new XMLHttpRequest();x3.open('GET','/cgi-bin/ajax?ajaxmethod=get_loid_phy_pwd',false);x3.send();console.log('GPON CONFIG:', x3.responseText);
+
+// Get snpwdauth
+var x4=new XMLHttpRequest();x4.open('GET','/cgi-bin/ajax?ajaxmethod=get_snpwdauth',false);x4.send();console.log('SNPWDAUTH:', x4.responseText);
