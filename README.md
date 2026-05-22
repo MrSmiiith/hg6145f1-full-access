@@ -10,22 +10,22 @@ By **Smothy (Rayane Merzoug)** & **izcarti** — [Numb Team](https://github.com/
 
 ## Vulnerabilities
 
-| # | Vulnerability | CWE | CVSS | Impact |
-|---|--------------|-----|------|--------|
-| 1 | Predictable Admin Password (MD5 + static salt) | CWE-1391 | 8.8 | Full admin access from MAC address |
-| 2 | Remote Code Execution via `triger_speedtest` | CWE-78 | 9.8 | Root shell |
-| 3 | Hardcoded AES-128-ECB Key (`ABCDEFGHIJKLMNOP`) | CWE-321 | 7.5 | Decrypt all stored credentials |
-| 4 | Unsigned Firmware Upload (CRC32 only) | CWE-354 | 8.8 | Arbitrary code execution |
-| 5 | Unauthenticated Info Disclosure | CWE-200 | 5.3 | MAC address leak, chains with #1 |
-| 6 | XOR Config "Encryption" (no key needed) | CWE-327 | 7.5 | Offline credential recovery |
-| 7 | Boot Process Backdoor (UART) | CWE-912 | 9.0 | Root shell via serial console |
-| 8 | Cleartext HTTP Admin Interface | CWE-319 | 6.5 | Credential sniffing |
-| 9 | No CSRF Protection | CWE-352 | 6.5 | Remote admin action execution |
-| 10 | All Services Run as Root | CWE-269 | 7.0 | Any vuln = instant root |
-| 11 | Default Root Password (`root123`) | CWE-798 | 9.8 | SSH/telnet root access |
-| 12 | Hardcoded Backdoor Credentials | CWE-798 | 9.8 | Superadmin access |
-| 13 | Password Change Without Verification | CWE-620 | 8.1 | Account takeover |
-| 14 | Superadmin Username Leak | CWE-200 | 5.3 | Chains with #13 |
+| # | CVE | Vulnerability | CWE | CVSS | Impact |
+|---|-----|--------------|-----|------|--------|
+| 1 | [CVE-2026-37752](https://www.cve.org/CVERecord?id=CVE-2026-37752) | Predictable Admin Password (MD5 + static salt) | CWE-1391 | 8.8 | Full admin access from MAC address |
+| 2 | [CVE-2026-37754](https://www.cve.org/CVERecord?id=CVE-2026-37754) | Remote Code Execution via `triger_speedtest` | CWE-78 | 9.8 | Root shell |
+| 3 | [CVE-2026-37753](https://www.cve.org/CVERecord?id=CVE-2026-37753) | Hardcoded AES-128-ECB Key (`ABCDEFGHIJKLMNOP`) | CWE-321 | 7.5 | Decrypt all stored credentials |
+| 4 | [CVE-2026-37755](https://www.cve.org/CVERecord?id=CVE-2026-37755) | Unsigned Firmware Upload (CRC32 only) | CWE-354 | 8.8 | Arbitrary code execution |
+| 5 | [CVE-2026-37759](https://www.cve.org/CVERecord?id=CVE-2026-37759) | Unauthenticated Info Disclosure | CWE-200 | 5.3 | MAC address leak, chains with #1 |
+| 6 | [CVE-2026-37760](https://www.cve.org/CVERecord?id=CVE-2026-37760) | XOR Config "Encryption" (no key needed) | CWE-327 | 7.5 | Offline credential recovery |
+| 7 | [CVE-2026-37756](https://www.cve.org/CVERecord?id=CVE-2026-37756) | Boot Process Backdoor (UART) | CWE-912 | 9.0 | Root shell via serial console |
+| 8 | [CVE-2026-37758](https://www.cve.org/CVERecord?id=CVE-2026-37758) | Cleartext HTTP Admin Interface | CWE-319 | 6.5 | Credential sniffing |
+| 9 | [CVE-2026-37757](https://www.cve.org/CVERecord?id=CVE-2026-37757) | No CSRF Protection | CWE-352 | 6.5 | Remote admin action execution |
+| 10 | Pending | All Services Run as Root | CWE-269 | 7.0 | Any vuln = instant root |
+| 11 | Pending | Default Root Password (`root123`) | CWE-798 | 9.8 | SSH/telnet root access |
+| 12 | Pending | Hardcoded Backdoor Credentials | CWE-798 | 9.8 | Superadmin access |
+| 13 | Pending | Password Change Without Verification | CWE-620 | 8.1 | Account takeover |
+| 14 | Pending | Superadmin Username Leak | CWE-200 | 5.3 | Chains with #13 |
 
 ---
 
@@ -107,7 +107,8 @@ ssh -p 2222 root@192.168.1.1
 | December 27, 2025 | Vendor (FiberHome) and ISP (Algeria Telecom) contacted via email |
 | March 15, 2026 | Full vulnerability chain documented |
 | March 15, 2026 | CVE IDs requested |
-| March 31, 2026 | 3+ months — no response, public disclosure on GitHub |
+| March 31, 2026 | 3+ months -- no response, public disclosure on GitHub |
+| May 15, 2026 | 9 CVE IDs assigned by MITRE (CVE-2026-37752 through CVE-2026-37760) |
 
 ---
 
@@ -248,9 +249,9 @@ CVE-11: SSH port 22 with default root:root123
 
 ---
 
-## CVE-1: Predictable Admin Password
+## CVE-2026-37752: Predictable Admin Password
 
-**CWE-1391 | CVSS 8.8 High | GHSA-xmq5-547h-c54q**
+**CVE-2026-37752 | CWE-1391 | CVSS 8.8 High | GHSA-xmq5-547h-c54q**
 
 ### Description
 
@@ -303,9 +304,9 @@ Password: <16-char generated password>
 
 ---
 
-## CVE-2: Remote Code Execution
+## CVE-2026-37754: Remote Code Execution
 
-**CWE-78 | CVSS 9.8 Critical | GHSA-vw92-g596-f383**
+**CVE-2026-37754 | CWE-78 | CVSS 9.8 Critical | GHSA-vw92-g596-f383**
 
 ### Description
 
@@ -354,9 +355,9 @@ Then: `ssh -p 2222 root@192.168.1.1` (password: root123)
 
 ---
 
-## CVE-3: Hardcoded AES Key
+## CVE-2026-37753: Hardcoded AES Key
 
-**CWE-321 | CVSS 7.5 High | GHSA-rj22-7j3c-hwqv**
+**CVE-2026-37753 | CWE-321 | CVSS 7.5 High | GHSA-rj22-7j3c-hwqv**
 
 ### Description
 
@@ -394,9 +395,9 @@ All stored credentials (PPPoE, VoIP, WiFi, FTP) can be decrypted offline by anyo
 
 ---
 
-## CVE-4: Unsigned Firmware Upload
+## CVE-2026-37755: Unsigned Firmware Upload
 
-**CWE-354 | CVSS 8.8 High | GHSA-v2v7-xg62-26vr**
+**CVE-2026-37755 | CWE-354 | CVSS 8.8 High | GHSA-v2v7-xg62-26vr**
 
 ### Description
 
@@ -455,9 +456,9 @@ The payload is an ARM ELF that extracts embedded tar.gz of web files, applies bi
 
 ---
 
-## CVE-5: Unauthenticated Info Disclosure
+## CVE-2026-37759: Unauthenticated Info Disclosure
 
-**CWE-200 | CVSS 5.3 Medium | GHSA-wqxj-5mr6-629m**
+**CVE-2026-37759 | CWE-200 | CVSS 5.3 Medium | GHSA-wqxj-5mr6-629m**
 
 ### Description
 
@@ -482,9 +483,9 @@ Returns (no login required):
 
 ---
 
-## CVE-6: XOR Config Encryption
+## CVE-2026-37760: XOR Config Encryption
 
-**CWE-327 | CVSS 7.5 High | GHSA-cg4p-rwgg-67f8**
+**CVE-2026-37760 | CWE-327 | CVSS 7.5 High | GHSA-cg4p-rwgg-67f8**
 
 ### Description
 
@@ -503,9 +504,9 @@ Any config file obtained from the router (via admin backup, TR-069 intercept, or
 
 ---
 
-## CVE-7: Boot Process Backdoor
+## CVE-2026-37756: Boot Process Backdoor
 
-**CWE-912 | CVSS 9.0 Critical | GHSA-c65g-m6qc-5543**
+**CVE-2026-37756 | CWE-912 | CVSS 9.0 Critical | GHSA-c65g-m6qc-5543**
 
 ### Description
 
@@ -541,17 +542,17 @@ fi
 
 ---
 
-## CVE-8: Cleartext HTTP
+## CVE-2026-37758: Cleartext HTTP
 
-**CWE-319 | CVSS 6.5 Medium | GHSA-qgf2-jx6w-ghrg**
+**CVE-2026-37758 | CWE-319 | CVSS 6.5 Medium | GHSA-qgf2-jx6w-ghrg**
 
 The web admin runs on HTTP port 80 only. No HTTPS. Client-side AES "encryption" uses the same hardcoded key from CVE-3, providing zero protection against network sniffing.
 
 ---
 
-## CVE-9: No CSRF Protection
+## CVE-2026-37757: No CSRF Protection
 
-**CWE-352 | CVSS 6.5 Medium | GHSA-9p7m-ghch-x93c**
+**CVE-2026-37757 | CWE-352 | CVSS 6.5 Medium | GHSA-9p7m-ghch-x93c**
 
 No CSRF tokens. Session IDs from `get_refresh_sessionid` are predictable and obtainable via unauthenticated GET. No Origin/Referer validation. All admin actions (password change, firmware upload, reboot, RCE) are vulnerable to CSRF.
 
@@ -845,11 +846,27 @@ fw_printenv | grep pass
 ### Firmware Encryption (3DES-CBC)
 
 The full firmware image uses 3DES-CBC encryption:
-- **Key:** `FIBERHOME_KEY`
+- **Key:** `FIBERHOME_KEY` (13 bytes, null-padded to 24 bytes for 3DES)
 - **IV:** `01234567`
 - **Validation:** CRC32 (init=0) after decryption
 
-The firmware decryption key is hardcoded in `libLedState.so`, meaning anyone can decrypt, modify, and re-encrypt firmware images.
+The `decrypt_file_open` function in `libLedState.so` passes the C string `"FIBERHOME_KEY"` directly to OpenSSL's `EVP_DecryptInit_ex`. Since 3DES requires a 24-byte key, OpenSSL reads 24 bytes from the pointer: 13 key characters + 11 null bytes (`\x00`). To decrypt in Python:
+
+```python
+from Crypto.Cipher import DES3
+
+KEY = b"FIBERHOME_KEY" + b"\x00" * 11   # 24 bytes
+IV  = b"01234567"                         # 8 bytes
+
+with open("firmware.bin", "rb") as f:
+    header = f.read(0xE00)    # 3584-byte ATOS header (plaintext)
+    payload = f.read()         # 3DES-CBC encrypted
+
+cipher = DES3.new(KEY, DES3.MODE_CBC, IV)
+decrypted = cipher.decrypt(payload)
+```
+
+The 3584-byte header (ATOS magic, HW/SW versions, CRC, section table) is **not encrypted**, only the payload after offset 0xE00.
 
 ### Flash Memory Layout
 
@@ -889,7 +906,7 @@ All libraries are ARM 32-bit, not stripped, with debug symbols — making revers
 
 ## CVE Deep Dive — How We Found Each Vulnerability
 
-### CVE-1 — Predictable Admin Password (CWE-1391)
+### CVE-2026-37752 -- Predictable Admin Password (CWE-1391)
 
 **What it is:** Your router's admin password is a mathematical function of its MAC address. The MAC is printed on the sticker on the bottom of every router.
 
@@ -910,7 +927,7 @@ All libraries are ARM 32-bit, not stripped, with debug symbols — making revers
 
 ---
 
-### CVE-2 — Remote Code Execution (CWE-78)
+### CVE-2026-37754 -- Remote Code Execution (CWE-78)
 
 **What it is:** The speedtest feature in the router's web interface passes user-supplied text directly into a Linux `system()` call without any sanitization. By adding a semicolon (`;`) followed by shell commands, an attacker can execute anything as root.
 
@@ -929,7 +946,7 @@ The `url_param` comes directly from user POST data with zero filtering. We craft
 
 ---
 
-### CVE-3 — Hardcoded AES Key (CWE-321)
+### CVE-2026-37753 -- Hardcoded AES Key (CWE-321)
 
 **What it is:** All stored credentials (WiFi password, PPPoE login, VoIP SIP credentials, FTP password) are encrypted with AES-128-ECB using the key `ABCDEFGHIJKLMNOP` — identical on every router.
 
@@ -948,7 +965,7 @@ We then found the encrypted credentials in `/fhconf/usrconfig_conf`, decrypted t
 
 ---
 
-### CVE-4 — Unsigned Firmware Upload (CWE-354)
+### CVE-2026-37755 -- Unsigned Firmware Upload (CWE-354)
 
 **What it is:** The firmware upgrade mechanism only validates a CRC32 checksum (with non-standard init value of 0 instead of 0xFFFFFFFF). There is no RSA/ECDSA cryptographic signature. Anyone with admin access can upload arbitrary firmware.
 
@@ -957,7 +974,7 @@ We then found the encrypted credentials in `/fhconf/usrconfig_conf`, decrypted t
 2. `file_verify()` — computes CRC32 with init=0 and compares to header field at offset 0x166
 3. `update_finalily_handler()` — executes the payload as an ARM binary
 
-We also discovered the firmware uses 3DES-CBC encryption with hardcoded key `"FIBERHOME_KEY"` and IV `"01234567"` — both found in `libLedState.so`. This means anyone can decrypt, modify, and re-encrypt firmware images.
+We also discovered the firmware uses 3DES-CBC encryption with hardcoded key `"FIBERHOME_KEY"` (null-padded to 24 bytes) and IV `"01234567"`, both found in `libLedState.so`. This means anyone can decrypt, modify, and re-encrypt firmware images.
 
 We built `custom-webui.bin` — a valid firmware file that passes CRC32 validation and executes an ARM ELF payload. The payload extracts embedded web files, applies bind mounts over the read-only `/www/` filesystem, and sets up root access.
 
@@ -965,7 +982,7 @@ We built `custom-webui.bin` — a valid firmware file that passes CRC32 validati
 
 ---
 
-### CVE-5 — Unauthenticated Information Disclosure (CWE-200)
+### CVE-2026-37759 -- Unauthenticated Information Disclosure (CWE-200)
 
 **What it is:** Several CGI API endpoints return sensitive device information without requiring any authentication.
 
@@ -987,7 +1004,7 @@ We built `custom-webui.bin` — a valid firmware file that passes CRC32 validati
 
 ---
 
-### CVE-6 — XOR Config "Encryption" (CWE-327)
+### CVE-2026-37760 -- XOR Config "Encryption" (CWE-327)
 
 **What it is:** When you export your router's configuration file (backup), it's "encrypted" with a trivially reversible XOR cipher that requires no key to decrypt.
 
@@ -1002,7 +1019,7 @@ This is a simple XOR with a predictable counter starting at 9527. No key materia
 
 ---
 
-### CVE-7 — Boot Process Backdoor (CWE-912)
+### CVE-2026-37756 -- Boot Process Backdoor (CWE-912)
 
 **What it is:** FiberHome left a manufacturer debug backdoor in the boot initialization script. During the first 2 seconds of boot, typing a 9-character code on the serial console (UART) bypasses ALL security initialization and drops to a root shell.
 
@@ -1022,7 +1039,7 @@ The SHA1 hash `ef431b3bb9e0f022134ebde6d2b87c66ca2c58d2` only covers 3 character
 
 ---
 
-### CVE-8 — Cleartext HTTP (CWE-319)
+### CVE-2026-37758 -- Cleartext HTTP (CWE-319)
 
 **What it is:** The entire admin interface runs over unencrypted HTTP on port 80. No HTTPS option is enabled by default.
 
@@ -1032,7 +1049,7 @@ The SHA1 hash `ef431b3bb9e0f022134ebde6d2b87c66ca2c58d2` only covers 3 character
 
 ---
 
-### CVE-9 — No CSRF Protection (CWE-352)
+### CVE-2026-37757 -- No CSRF Protection (CWE-352)
 
 **What it is:** The router's web interface has no Cross-Site Request Forgery protection. If you're logged into your router and visit a malicious website, that website can silently send commands to your router.
 
@@ -1047,7 +1064,7 @@ We built a proof-of-concept HTML page that, when opened by someone logged into t
 
 ---
 
-### CVE-10 — No Privilege Separation (CWE-269)
+### CVE-10 -- No Privilege Separation (CWE-269)
 
 **What it is:** Every single process on the router — web server, DNS, DHCP, FTP, SSH, CGI — runs as root (uid=0) with maximum privileges.
 
@@ -1059,7 +1076,7 @@ We built a proof-of-concept HTML page that, when opened by someone logged into t
 
 ---
 
-### CVE-11 — Default Root Password (CWE-798)
+### CVE-11 -- Default Root Password (CWE-798)
 
 **What it is:** The root password is `root123` on every single HG6145F1 router. It's in the read-only filesystem — users cannot change it.
 
@@ -1073,7 +1090,7 @@ The MD5-crypt hash cracked instantly with any wordlist: password is `root123`. A
 
 ---
 
-### CVE-12 — Hardcoded Backdoor Credentials (CWE-798)
+### CVE-12 -- Hardcoded Backdoor Credentials (CWE-798)
 
 **What it is:** The CGI binary contains a hardcoded manufacturer backdoor with superadmin privileges — higher access than the normal admin account.
 
@@ -1090,7 +1107,7 @@ The credentials `fiberhomehg2x0`/`hg2x0` are compiled into every firmware image 
 
 ---
 
-### CVE-13 — Password Change Without Verification (CWE-620)
+### CVE-13 -- Password Change Without Verification (CWE-620)
 
 **What it is:** An API method named `modify_password_not_check_oldpassword` does exactly what the name says — changes the admin password without requiring the current password.
 
@@ -1109,7 +1126,7 @@ Combined with CVE-9 (no CSRF), a malicious website can change your router's admi
 
 ---
 
-### CVE-14 — Superadmin Username Leak (CWE-200)
+### CVE-14 -- Superadmin Username Leak (CWE-200)
 
 **What it is:** The `get_superadmin_userName` API endpoint returns the ISP's superadmin username without authentication.
 

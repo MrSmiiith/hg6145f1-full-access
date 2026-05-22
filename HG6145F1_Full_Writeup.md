@@ -11,15 +11,15 @@
 1. [Overview](#overview)
 2. [Attack Surface](#attack-surface)
 3. [Vulnerability Chain](#vulnerability-chain)
-4. [CVE-1: Predictable Admin Password](#cve-1-predictable-admin-password)
-5. [CVE-2: Remote Code Execution](#cve-2-remote-code-execution)
-6. [CVE-3: Hardcoded AES Key](#cve-3-hardcoded-aes-key)
-7. [CVE-4: Unsigned Firmware Upload](#cve-4-unsigned-firmware-upload)
-8. [CVE-5: Unauthenticated Info Disclosure](#cve-5-unauthenticated-info-disclosure)
-9. [CVE-6: XOR Config Encryption](#cve-6-xor-config-encryption)
-10. [CVE-7: Boot Process Backdoor](#cve-7-boot-process-backdoor)
-11. [CVE-8: Cleartext HTTP](#cve-8-cleartext-http)
-12. [CVE-9: No CSRF Protection](#cve-9-no-csrf-protection)
+4. [CVE-2026-37752: Predictable Admin Password](#cve-2026-37752-predictable-admin-password)
+5. [CVE-2026-37754: Remote Code Execution](#cve-2026-37754-remote-code-execution)
+6. [CVE-2026-37753: Hardcoded AES Key](#cve-2026-37753-hardcoded-aes-key)
+7. [CVE-2026-37755: Unsigned Firmware Upload](#cve-2026-37755-unsigned-firmware-upload)
+8. [CVE-2026-37759: Unauthenticated Info Disclosure](#cve-2026-37759-unauthenticated-info-disclosure)
+9. [CVE-2026-37760: XOR Config Encryption](#cve-2026-37760-xor-config-encryption)
+10. [CVE-2026-37756: Boot Process Backdoor](#cve-2026-37756-boot-process-backdoor)
+11. [CVE-2026-37758: Cleartext HTTP](#cve-2026-37758-cleartext-http)
+12. [CVE-2026-37757: No CSRF Protection](#cve-2026-37757-no-csrf-protection)
 13. [CVE-10: No Privilege Separation](#cve-10-no-privilege-separation)
 14. [CVE-11: Default Root Password](#cve-11-default-root-password)
 15. [CVE-12: Hardcoded Backdoor Credentials](#cve-12-hardcoded-backdoor-credentials)
@@ -115,9 +115,9 @@ CVE-11: SSH port 22 with default root:root123
 
 ---
 
-## CVE-1: Predictable Admin Password
+## CVE-2026-37752: Predictable Admin Password
 
-**CWE-1391 | CVSS 8.8 High | GHSA-xmq5-547h-c54q**
+**CVE-2026-37752 | CWE-1391 | CVSS 8.8 High | GHSA-xmq5-547h-c54q**
 
 ### Description
 
@@ -170,9 +170,9 @@ Password: <16-char generated password>
 
 ---
 
-## CVE-2: Remote Code Execution
+## CVE-2026-37754: Remote Code Execution
 
-**CWE-78 | CVSS 9.8 Critical | GHSA-vw92-g596-f383**
+**CVE-2026-37754 | CWE-78 | CVSS 9.8 Critical | GHSA-vw92-g596-f383**
 
 ### Description
 
@@ -221,9 +221,9 @@ Then: `ssh -p 2222 root@192.168.1.1` (password: root123)
 
 ---
 
-## CVE-3: Hardcoded AES Key
+## CVE-2026-37753: Hardcoded AES Key
 
-**CWE-321 | CVSS 7.5 High | GHSA-rj22-7j3c-hwqv**
+**CVE-2026-37753 | CWE-321 | CVSS 7.5 High | GHSA-rj22-7j3c-hwqv**
 
 ### Description
 
@@ -261,9 +261,9 @@ All stored credentials (PPPoE, VoIP, WiFi, FTP) can be decrypted offline by anyo
 
 ---
 
-## CVE-4: Unsigned Firmware Upload
+## CVE-2026-37755: Unsigned Firmware Upload
 
-**CWE-354 | CVSS 8.8 High | GHSA-v2v7-xg62-26vr**
+**CVE-2026-37755 | CWE-354 | CVSS 8.8 High | GHSA-v2v7-xg62-26vr**
 
 ### Description
 
@@ -322,9 +322,9 @@ The payload is an ARM ELF that extracts embedded tar.gz of web files, applies bi
 
 ---
 
-## CVE-5: Unauthenticated Info Disclosure
+## CVE-2026-37759: Unauthenticated Info Disclosure
 
-**CWE-200 | CVSS 5.3 Medium | GHSA-wqxj-5mr6-629m**
+**CVE-2026-37759 | CWE-200 | CVSS 5.3 Medium | GHSA-wqxj-5mr6-629m**
 
 ### Description
 
@@ -349,9 +349,9 @@ Returns (no login required):
 
 ---
 
-## CVE-6: XOR Config Encryption
+## CVE-2026-37760: XOR Config Encryption
 
-**CWE-327 | CVSS 7.5 High | GHSA-cg4p-rwgg-67f8**
+**CVE-2026-37760 | CWE-327 | CVSS 7.5 High | GHSA-cg4p-rwgg-67f8**
 
 ### Description
 
@@ -370,9 +370,9 @@ Any config file obtained from the router (via admin backup, TR-069 intercept, or
 
 ---
 
-## CVE-7: Boot Process Backdoor
+## CVE-2026-37756: Boot Process Backdoor
 
-**CWE-912 | CVSS 9.0 Critical | GHSA-c65g-m6qc-5543**
+**CVE-2026-37756 | CWE-912 | CVSS 9.0 Critical | GHSA-c65g-m6qc-5543**
 
 ### Description
 
@@ -408,17 +408,17 @@ fi
 
 ---
 
-## CVE-8: Cleartext HTTP
+## CVE-2026-37758: Cleartext HTTP
 
-**CWE-319 | CVSS 6.5 Medium | GHSA-qgf2-jx6w-ghrg**
+**CVE-2026-37758 | CWE-319 | CVSS 6.5 Medium | GHSA-qgf2-jx6w-ghrg**
 
 The web admin runs on HTTP port 80 only. No HTTPS. Client-side AES "encryption" uses the same hardcoded key from CVE-3, providing zero protection against network sniffing.
 
 ---
 
-## CVE-9: No CSRF Protection
+## CVE-2026-37757: No CSRF Protection
 
-**CWE-352 | CVSS 6.5 Medium | GHSA-9p7m-ghch-x93c**
+**CVE-2026-37757 | CWE-352 | CVSS 6.5 Medium | GHSA-9p7m-ghch-x93c**
 
 No CSRF tokens. Session IDs from `get_refresh_sessionid` are predictable and obtainable via unauthenticated GET. No Origin/Referer validation. All admin actions (password change, firmware upload, reboot, RCE) are vulnerable to CSRF.
 
@@ -657,8 +657,9 @@ We are not responsible for any misuse of this information. This research is publ
 | December 27, 2025 | ISP (Algeria Telecom) contacted via email |
 | March 15, 2026 | Full vulnerability chain documented |
 | March 15, 2026 | CVE IDs requested |
-| March 31, 2026 | 3+ months — no response from vendor or ISP |
+| March 31, 2026 | 3+ months -- no response from vendor or ISP |
 | March 31, 2026 | Public disclosure on GitHub |
+| May 15, 2026 | 9 CVE IDs assigned by MITRE (CVE-2026-37752 through CVE-2026-37760) |
 
 ---
 
@@ -712,11 +713,27 @@ fw_printenv | grep pass
 ### Firmware Encryption (3DES-CBC)
 
 The full firmware image uses 3DES-CBC encryption:
-- **Key:** `FIBERHOME_KEY`
+- **Key:** `FIBERHOME_KEY` (13 bytes, null-padded to 24 bytes for 3DES)
 - **IV:** `01234567`
 - **Validation:** CRC32 (init=0) after decryption
 
-The firmware decryption key is hardcoded in `libLedState.so`, meaning anyone can decrypt, modify, and re-encrypt firmware images.
+The `decrypt_file_open` function in `libLedState.so` passes the C string `"FIBERHOME_KEY"` directly to OpenSSL's `EVP_DecryptInit_ex`. Since 3DES requires a 24-byte key, OpenSSL reads 24 bytes from the pointer: 13 key characters + 11 null bytes (`\x00`). To decrypt in Python:
+
+```python
+from Crypto.Cipher import DES3
+
+KEY = b"FIBERHOME_KEY" + b"\x00" * 11   # 24 bytes
+IV  = b"01234567"                         # 8 bytes
+
+with open("firmware.bin", "rb") as f:
+    header = f.read(0xE00)    # 3584-byte ATOS header (plaintext)
+    payload = f.read()         # 3DES-CBC encrypted
+
+cipher = DES3.new(KEY, DES3.MODE_CBC, IV)
+decrypted = cipher.decrypt(payload)
+```
+
+The 3584-byte header (ATOS magic, HW/SW versions, CRC, section table) is **not encrypted**, only the payload after offset 0xE00.
 
 ### Flash Memory Layout
 
@@ -824,7 +841,7 @@ We then found the encrypted credentials in `/fhconf/usrconfig_conf`, decrypted t
 2. `file_verify()` — computes CRC32 with init=0 and compares to header field at offset 0x166
 3. `update_finalily_handler()` — executes the payload as an ARM binary
 
-We also discovered the firmware uses 3DES-CBC encryption with hardcoded key `"FIBERHOME_KEY"` and IV `"01234567"` — both found in `libLedState.so`. This means anyone can decrypt, modify, and re-encrypt firmware images.
+We also discovered the firmware uses 3DES-CBC encryption with hardcoded key `"FIBERHOME_KEY"` (null-padded to 24 bytes) and IV `"01234567"`, both found in `libLedState.so`. This means anyone can decrypt, modify, and re-encrypt firmware images.
 
 We built `custom-webui.bin` — a valid firmware file that passes CRC32 validation and executes an ARM ELF payload. The payload extracts embedded web files, applies bind mounts over the read-only `/www/` filesystem, and sets up root access.
 
